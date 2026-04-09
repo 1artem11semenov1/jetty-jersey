@@ -4,14 +4,14 @@ import java.time.Year;
 
 public class Book {
 
-    Integer id;
-    String name;
-    int authorId;
-    int publishingHouseId;
-    Year publishYear;
-    Year writingYear;
-    short pagesCount;
-    String isbn;
+    private Integer id;
+    private String name;
+    private int authorId;
+    private int publishingHouseId;
+    private Year publishYear;
+    private Year writingYear;
+    private short pagesCount;
+    private String isbn;
 
     private Book(Integer id,
                  String name,

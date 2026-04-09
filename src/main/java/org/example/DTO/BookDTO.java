@@ -5,19 +5,21 @@ import org.example.model.Book;
 import java.time.Year;
 
 public class BookDTO {
-    String name;
-    int authorId;
-    int publishingHouseId;
-    Year publishYear;
-    Year writingYear;
-    short pagesCount;
-    String isbn;
+    private Integer id;
+    private String name;
+    private int authorId;
+    private int publishingHouseId;
+    private Year publishYear;
+    private Year writingYear;
+    private short pagesCount;
+    private String isbn;
 
     public BookDTO(){}
 
     public static BookDTO fromEntity(Book book) {
         BookDTO bdto = new BookDTO();
 
+        bdto.setId(book.getId());
         bdto.name = book.getName();
         bdto.authorId = book.getAuthorId();
         bdto.publishingHouseId = book.getPublishingHouseId();
@@ -39,6 +41,14 @@ public class BookDTO {
                 this.pagesCount,
                 this.isbn
         );
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
