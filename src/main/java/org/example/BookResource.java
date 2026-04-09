@@ -29,7 +29,7 @@ public class BookResource {
     public Response getById(@PathParam("id") Integer id) {
         Book book = bookDAO.getById(id);
         if (book == null){
-            return Response.status(404).entity("Book with id = " + id + " not found.").build();
+            return Response.status(Response.Status.NOT_FOUND).entity("Book with id = " + id + " not found.").build();
         }
         return Response.ok(BookDTO.fromEntity(book)).build();
     }
@@ -37,7 +37,7 @@ public class BookResource {
     @POST
     @Path("/new")
     @Consumes(MediaType.APPLICATION_JSON)
-    public BookDTO saveVacancy(BookDTO book) {
+    public BookDTO saveBook(BookDTO book) {
         return BookDTO.fromEntity(bookDAO.create(book.toEntity()));
     }
 
@@ -49,7 +49,7 @@ public class BookResource {
         toUpdate.setId(id);
         Book bookUpd = bookDAO.update(toUpdate);
         if (bookUpd == null) {
-            return Response.status(404).entity("Book with id = " + id + " not found.").build();
+            return Response.status(Response.Status.NOT_FOUND).entity("Book with id = " + id + " not found.").build();
         }
         return Response.ok(BookDTO.fromEntity(bookUpd)).build();
     }
@@ -59,7 +59,7 @@ public class BookResource {
     public Response deleteById(@PathParam("id") Integer id) {
         boolean res = bookDAO.delete(id);
         if (!res) {
-            return Response.status(404).entity("Book with id = " + id + " not found.").build();
+            return Response.status(Response.Status.NO_CONTENT).build();
         }
         return Response.ok("Book with id = " + id + " successfully deleted").build();
     }
